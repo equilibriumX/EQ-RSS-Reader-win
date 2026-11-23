@@ -481,13 +481,21 @@ Rectangle {
                         }
 
                         QQC2.Dialog {
-                            id: websiteFinderDialog
-                            title: qsTr("Find RSS feeds on website")
-                            modal: false
-                            focus: true
-                            width: 740
-                            height: 470
-                            standardButtons: QQC2.Dialog.Close
+    id: websiteFinderDialog
+
+    parent: QQC2.Overlay.overlay
+
+    title: qsTr("Find RSS feeds on website")
+    modal: false
+    focus: true
+
+    width: Math.min(740, parent.width - 40)
+    height: Math.min(470, parent.height - 40)
+
+    x: Math.max(20, (parent.width - width) / 2)
+    y: Math.max(20, (parent.height - height) / 2)
+
+    standardButtons: QQC2.Dialog.Close
 
                             ColumnLayout {
                                 anchors.fill: parent
