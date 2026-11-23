@@ -11,8 +11,11 @@ class QMenu;
 class TrayController final : public QObject
 {
     Q_OBJECT
+
 public:
     explicit TrayController(QObject *parent = nullptr);
+    ~TrayController() override;
+
     void setWindow(QQuickWindow *window);
 
     Q_INVOKABLE void showWindow();
@@ -23,4 +26,5 @@ public:
 private:
     QPointer<QQuickWindow> m_window;
     QSystemTrayIcon m_tray;
+    QMenu *m_menu = nullptr;
 };
