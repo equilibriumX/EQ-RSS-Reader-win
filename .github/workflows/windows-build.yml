@@ -23,7 +23,7 @@ jobs:
         with:
           python-version: '3.13'
 
-      - name: Install Qt 6.8.3 (MSVC 2022 x64)
+            - name: Install Qt 6.8.3 (MSVC 2022 x64)
         uses: jurplel/install-qt-action@v4
         with:
           version: '6.8.3'
@@ -31,7 +31,6 @@ jobs:
           target: 'desktop'
           arch: 'win64_msvc2022_64'
           modules: 'qtwebengine qtpositioning qtwebchannel'
-          archives: 'qtsvg'
           cache: false
           setup-python: false
 
