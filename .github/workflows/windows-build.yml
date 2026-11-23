@@ -32,7 +32,7 @@ jobs:
           arch: 'win64_msvc2022_64'
           modules: 'qtwebengine qtpositioning qtwebchannel'
           archives: 'qtsvg'
-          cache: true
+          cache: false
           setup-python: false
 
       - name: Configure
