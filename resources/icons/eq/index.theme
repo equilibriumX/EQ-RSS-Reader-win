@@ -1,0 +1,11 @@
+[Icon Theme]
+Name=eq
+Comment=EQ-RSS Reader interface icons
+Directories=actions/22
+
+[actions/22]
+Size=22
+Type=Scalable
+MinSize=16
+MaxSize=64
+Context=Actions
