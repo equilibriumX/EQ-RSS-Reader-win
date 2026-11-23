@@ -13,9 +13,15 @@ permissions:
 jobs:
   build-windows:
     runs-on: windows-2022
+
     steps:
       - name: Check out source
         uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.13'
 
       - name: Install Qt 6.8.3 (MSVC 2022 x64)
         uses: jurplel/install-qt-action@v4
@@ -24,8 +30,10 @@ jobs:
           host: 'windows'
           target: 'desktop'
           arch: 'win64_msvc2022_64'
-          modules: 'qtwebengine;qtsvg;qtpositioning;qtwebchannel'
+          modules: 'qtwebengine qtpositioning qtwebchannel'
+          archives: 'qtsvg'
           cache: true
+          setup-python: false
 
       - name: Configure
         run: cmake -S . -B build -G "Visual Studio 17 2022" -A x64
