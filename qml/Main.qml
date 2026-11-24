@@ -61,8 +61,8 @@ QQC2.ApplicationWindow {
         property int wideThreshold: Math.min(760, Math.max(560, Number(appSettings.wideThreshold || 700)))
         property bool splitMode: workspace.splitMode
 
-        property color readerBackgroundColor: systemPalette.window
-        property color readerTextColor: systemPalette.windowText
+        property color readerBackgroundColor: systemPalette.base
+        property color readerTextColor: systemPalette.text
         property color readerLinkColor: systemPalette.highlight
         property color readerSubtleColor: systemPalette.mid
         property color readerCodeBackgroundColor: systemPalette.base
@@ -878,3 +878,4 @@ QQC2.ApplicationWindow {
     SettingsDialog { id: settingsDialog; settings: appSettings }
     }
 }
+
