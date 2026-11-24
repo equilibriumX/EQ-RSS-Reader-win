@@ -9,12 +9,20 @@
 #include <QQuickWindow>
 #include <QStandardPaths>
 #include <QSystemTrayIcon>
+#include <QtGlobal>
 #include <QDebug>
 #include <QIcon>
 #include <QtWebEngineQuick/qtwebenginequickglobal.h>
 
 int main(int argc, char *argv[])
 {
+#if defined(Q_OS_WIN)
+    // Work around Qt WebEngine rendering failures with GPU compositing
+    // on Windows (including Wine). Set this before WebEngine initialization.
+    qputenv("QTWEBENGINE_CHROMIUM_FLAGS",
+            QByteArrayLiteral("--disable-gpu --disable-gpu-compositing"));
+#endif
+
     QtWebEngineQuick::initialize();
     QApplication app(argc, argv);
     QCoreApplication::setOrganizationName(QStringLiteral("Barnak"));
