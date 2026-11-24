@@ -61,11 +61,13 @@ QQC2.ApplicationWindow {
         property int wideThreshold: Math.min(760, Math.max(560, Number(appSettings.wideThreshold || 700)))
         property bool splitMode: workspace.splitMode
 
-        property color readerBackgroundColor: systemPalette.base
-        property color readerTextColor: systemPalette.text
-        property color readerLinkColor: systemPalette.highlight
-        property color readerSubtleColor: systemPalette.mid
-        property color readerCodeBackgroundColor: systemPalette.base
+        // Use explicit high-contrast Reader View colors. Wine/Windows
+        // SystemPalette roles can resolve to nearly identical blue tones.
+        property color readerBackgroundColor: "#FFFFFF"
+        property color readerTextColor: "#202124"
+        property color readerLinkColor: "#0067C0"
+        property color readerSubtleColor: "#5F6368"
+        property color readerCodeBackgroundColor: "#F1F3F5"
         property var feeds: []
         property var groups: []
         property var articles: []
@@ -878,4 +880,3 @@ QQC2.ApplicationWindow {
     SettingsDialog { id: settingsDialog; settings: appSettings }
     }
 }
-
