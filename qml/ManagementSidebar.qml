@@ -229,8 +229,6 @@ Rectangle {
                         Layout.fillHeight: true
                         Layout.preferredWidth: 230
                         Layout.minimumWidth: 175
-                        radius: 8
-                        color: "transparent"
 
                         ColumnLayout {
                             anchors.fill: parent
