@@ -25,15 +25,16 @@ Rectangle {
     property var controller
     property var appStyle
 
-    border.width: appStyle ? 1 : 0
-    border.color: appStyle ? appStyle.border : "transparent"
+    // Sidebar je direktno na glavnoj pozadini aplikacije.
+    border.width: 0
+    border.color: "transparent"
 
     Layout.fillHeight: true
     Layout.preferredWidth: 62
     Layout.minimumWidth: 54
 
-    radius: 8
-    color: appStyle ? appStyle.panelBackground : "transparent"
+    radius: 0
+    color: "transparent"
 
     ColumnLayout {
         anchors.fill: parent
