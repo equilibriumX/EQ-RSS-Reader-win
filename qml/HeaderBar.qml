@@ -29,10 +29,10 @@ Rectangle {
     signal settingsRequested()
 
     implicitHeight: 46
-    radius: 10
-    color: appStyle ? appStyle.panelBackground : "transparent"
-    border.width: appStyle ? 1 : 0
-    border.color: appStyle ? appStyle.border : "transparent"
+    radius: 0
+    color: "transparent"
+    border.width: 0
+    border.color: "transparent"
 
     readonly property int unreadCount: controller ? (controller.unreadNewArticlesCount !== undefined ? controller.unreadNewArticlesCount : (controller.root ? controller.root.unreadNewArticlesCount : 0)) : 0
 
