@@ -26,10 +26,10 @@ Rectangle {
     property var controller
     property var appStyle
 
-    color: appStyle ? appStyle.panelBackground : "transparent"
-    radius: 10
-    border.width: appStyle ? 1 : 0
-    border.color: appStyle ? appStyle.border : "transparent"
+    color: "transparent"
+    radius: 0
+    border.width: 0
+    border.color: "transparent"
 
     property var discoveredFeeds: []
     property string discoveryStatus: ""
