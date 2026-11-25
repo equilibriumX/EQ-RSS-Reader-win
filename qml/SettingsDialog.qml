@@ -8,6 +8,7 @@ QQC2.Dialog {
     modal: true
     standardButtons: QQC2.Dialog.Ok | QQC2.Dialog.Cancel
     property var settings
+    property var appStyle
     width: 420
     onOpened: { refreshSpin.value = settings.refreshMinutes; widthSpin.value = settings.wideThreshold; startupCheck.checked = settings.startWithWindows }
     onAccepted: { settings.refreshMinutes = refreshSpin.value; settings.wideThreshold = widthSpin.value; settings.startWithWindows = startupCheck.checked }

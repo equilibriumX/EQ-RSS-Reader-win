@@ -25,10 +25,10 @@ import QtWebEngine
 
 Item {
     id: workspace
-    SystemPalette { id: systemPalette }
+    property var appStyle
     property var controller
     property var webProfile
-    property color readerBackgroundColor: systemPalette.window
+    property color readerBackgroundColor: appStyle ? appStyle.readerBackground : "#FFFFFF"
     property int wideThreshold: 700
     property bool splitMode: width >= wideThreshold
     property var currentWebView: splitMode ? wideWebView : narrowWebView
@@ -81,7 +81,7 @@ Item {
                                         width: newsGrid.cellWidth - 8
                                         height: newsGrid.cellHeight - 8
                                         radius: 8
-                                        color: systemPalette.base
+                                        color: (appStyle ? appStyle.cardBackground : "#FFFFFF")
 
                                         MouseArea {
                                             anchors.fill: parent
@@ -164,7 +164,7 @@ Item {
                             Layout.fillHeight: true
                             Layout.minimumWidth: visible ? 280 : 0
                             radius: 8
-                            color: systemPalette.base
+                            color: (appStyle ? appStyle.cardBackground : "#FFFFFF")
 
                             ColumnLayout {
                                 anchors.fill: parent
@@ -230,11 +230,11 @@ Item {
                                             Item { Layout.fillWidth: true } // Gura sadržaj u desnu stranu ako je potrebno, ili ukloni ako želiš levo
                                             QQC2.Label {
                                                 text: "Next"
-                                                color: systemPalette.windowText
+                                                color: (appStyle ? appStyle.text : "#202020")
                                                 horizontalAlignment: Text.AlignRight
                                             }
                                             AppIcon {
-                                                color: systemPalette.windowText
+                                                color: (appStyle ? appStyle.text : "#202020")
                                                 source: "go-next"
                                                 implicitWidth: 16
                                                 implicitHeight: 16
@@ -263,7 +263,7 @@ Item {
                             Layout.fillWidth: visible
                             Layout.fillHeight: true
                             radius: 8
-                            color: systemPalette.base
+                            color: (appStyle ? appStyle.cardBackground : "#FFFFFF")
 
                             ColumnLayout {
                                 anchors.fill: parent
@@ -328,11 +328,11 @@ Item {
                                             Item { Layout.fillWidth: true } // Gura sadržaj u desnu stranu ako je potrebno, ili ukloni ako želiš levo
                                             QQC2.Label {
                                                 text: "Next"
-                                                color: systemPalette.windowText
+                                                color: (appStyle ? appStyle.text : "#202020")
                                                 horizontalAlignment: Text.AlignRight
                                             }
                                             AppIcon {
-                                                color: systemPalette.windowText
+                                                color: (appStyle ? appStyle.text : "#202020")
                                                 source: "go-next"
                                                 implicitWidth: 16
                                                 implicitHeight: 16

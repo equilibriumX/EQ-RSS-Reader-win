@@ -23,8 +23,13 @@ import QtQuick.Controls as QQC2
 
 Rectangle {
     id: managementSidebar
-    SystemPalette { id: systemPalette }
     property var controller
+    property var appStyle
+
+    color: appStyle ? appStyle.panelBackground : "transparent"
+    radius: 10
+    border.width: appStyle ? 1 : 0
+    border.color: appStyle ? appStyle.border : "transparent"
 
     property var discoveredFeeds: []
     property string discoveryStatus: ""
@@ -243,7 +248,7 @@ Rectangle {
                             Rectangle {
                                 Layout.fillWidth: true
                                 height: 1
-                                color: systemPalette.mid
+                                color: (appStyle ? appStyle.divider : "#D2DADA")
                             }
 
                             QQC2.Label {
@@ -263,7 +268,7 @@ Rectangle {
                                     width: ListView.view.width
                                     height: 36
                                     radius: 5
-                                    color: controller.activeGroupIndex === index ? systemPalette.highlight : "transparent"
+                                    color: controller.activeGroupIndex === index ? (appStyle ? appStyle.selectedBackground : "#DCECF8") : "transparent"
 
                                     RowLayout {
                                         anchors.fill: parent
@@ -346,6 +351,19 @@ Rectangle {
                                 Layout.fillWidth: true
                                 QQC2.TextField {
                                     id: groupInput
+                                    background: Rectangle {
+                                        color: "transparent"
+                                        implicitHeight: 30
+                                        Rectangle {
+                                            width: parent.width
+                                            height: groupInput.activeFocus ? 2 : 1
+                                            anchors.bottom: parent.bottom
+                                            color: groupInput.activeFocus
+                                                   ? (managementSidebar.appStyle ? managementSidebar.appStyle.inputFocus : "#1769AA")
+                                                   : (managementSidebar.appStyle ? managementSidebar.appStyle.inputUnderline : "#AAB7B7")
+                                        }
+                                    }
+
                                     Layout.fillWidth: true
                                     placeholderText: qsTr("New group...")
                                     onAccepted: {
@@ -366,7 +384,7 @@ Rectangle {
                             Rectangle {
                                 Layout.fillWidth: true
                                 height: 1
-                                color: systemPalette.mid
+                                color: (appStyle ? appStyle.divider : "#D2DADA")
                             }
 
                             QQC2.Label {
@@ -440,7 +458,7 @@ Rectangle {
                             Rectangle {
                                 Layout.fillWidth: true
                                 height: 1
-                                color: systemPalette.mid
+                                color: (appStyle ? appStyle.divider : "#D2DADA")
                             }
 
                             QQC2.Label {
@@ -449,6 +467,19 @@ Rectangle {
                             }
                             QQC2.TextField {
                                 id: feedInput
+                                    background: Rectangle {
+                                        color: "transparent"
+                                        implicitHeight: 30
+                                        Rectangle {
+                                            width: parent.width
+                                            height: feedInput.activeFocus ? 2 : 1
+                                            anchors.bottom: parent.bottom
+                                            color: feedInput.activeFocus
+                                                   ? (managementSidebar.appStyle ? managementSidebar.appStyle.inputFocus : "#1769AA")
+                                                   : (managementSidebar.appStyle ? managementSidebar.appStyle.inputUnderline : "#AAB7B7")
+                                        }
+                                    }
+
                                 Layout.fillWidth: true
                                 placeholderText: "https://example.com/feed.xml"
                                 onAccepted: {
@@ -469,7 +500,7 @@ Rectangle {
                             Rectangle {
                                 Layout.fillWidth: true
                                 height: 1
-                                color: systemPalette.mid
+                                color: (appStyle ? appStyle.divider : "#D2DADA")
                             }
 
                             QQC2.Button {
@@ -511,6 +542,19 @@ Rectangle {
                                     Layout.fillWidth: true
                                     QQC2.TextField {
                                         id: websiteInput
+                                    background: Rectangle {
+                                        color: "transparent"
+                                        implicitHeight: 30
+                                        Rectangle {
+                                            width: parent.width
+                                            height: websiteInput.activeFocus ? 2 : 1
+                                            anchors.bottom: parent.bottom
+                                            color: websiteInput.activeFocus
+                                                   ? (managementSidebar.appStyle ? managementSidebar.appStyle.inputFocus : "#1769AA")
+                                                   : (managementSidebar.appStyle ? managementSidebar.appStyle.inputUnderline : "#AAB7B7")
+                                        }
+                                    }
+
                                         Layout.fillWidth: true
                                         placeholderText: "https://example.com"
                                         enabled: !managementSidebar.discovering
@@ -545,7 +589,7 @@ Rectangle {
                                         width: ListView.view.width
                                         height: Math.max(66, feedUrlLabel.implicitHeight + 24)
                                         radius: 8
-                                        color: systemPalette.base
+                                        color: (appStyle ? appStyle.cardBackground : "#FFFFFF")
 
                                         RowLayout {
                                             anchors.fill: parent

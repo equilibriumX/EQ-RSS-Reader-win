@@ -22,13 +22,25 @@ import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls as QQC2
 
-RowLayout {
+Rectangle {
     id: headerRoot
-    SystemPalette { id: systemPalette }
+    property var appStyle
     property var controller
     signal settingsRequested()
 
+    implicitHeight: 46
+    radius: 10
+    color: appStyle ? appStyle.panelBackground : "transparent"
+    border.width: appStyle ? 1 : 0
+    border.color: appStyle ? appStyle.border : "transparent"
+
     readonly property int unreadCount: controller ? (controller.unreadNewArticlesCount !== undefined ? controller.unreadNewArticlesCount : (controller.root ? controller.root.unreadNewArticlesCount : 0)) : 0
+
+    RowLayout {
+        anchors.fill: parent
+        anchors.leftMargin: 10
+        anchors.rightMargin: 8
+        spacing: 6
 
     QQC2.Label {
         text: "EQ-RSS Reader"
@@ -46,14 +58,14 @@ RowLayout {
             width: 8
             height: 8
             radius: 4
-            color: "#c42b1c"
+            color: headerRoot.appStyle ? headerRoot.appStyle.danger : "#c42b1c"
             anchors.verticalCenter: parent.verticalCenter
         }
 
         QQC2.Label {
             text: qsTr("New:") + " " + headerRoot.unreadCount
             font.pointSize: 9
-            color: "#c42b1c"
+            color: headerRoot.appStyle ? headerRoot.appStyle.danger : "#c42b1c"
             font.bold: true
         }
 
@@ -95,7 +107,7 @@ RowLayout {
             width: 8
             height: 8
             radius: 4
-            color: "#c42b1c" // ili slobodno stavi "red"
+            color: headerRoot.appStyle ? headerRoot.appStyle.danger : "#c42b1c" // ili slobodno stavi "red"
             visible: !controller.autoRefreshEnabled
 
             // Pozicioniramo je u gornji desni ugao dugmeta (ili prilagodi po želji)
@@ -128,5 +140,6 @@ RowLayout {
                 }
             }
         }
+    }
     }
 }

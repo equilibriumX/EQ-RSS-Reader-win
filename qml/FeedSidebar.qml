@@ -23,8 +23,13 @@ import QtQuick.Controls as QQC2
 
 Rectangle {
     id: feedSidebar
-    SystemPalette { id: systemPalette }
     property var controller
+    property var appStyle
+
+    color: appStyle ? appStyle.panelBackground : "transparent"
+    radius: 10
+    border.width: appStyle ? 1 : 0
+    border.color: appStyle ? appStyle.border : "transparent"
 
                         Layout.fillHeight: true
                         Layout.preferredWidth: 62
@@ -43,10 +48,10 @@ Rectangle {
                                 Rectangle {
                                     anchors.fill: parent
                                     radius: 7
-                                    color: (controller.activeFeedIndex === -1 && controller.activeGroupIndex === -1) ? systemPalette.highlight : "transparent"
+                                    color: (controller.activeFeedIndex === -1 && controller.activeGroupIndex === -1) ? (appStyle ? appStyle.selectedBackground : "#DCECF8") : "transparent"
                                 }
                                 AppIcon {
-                                    color: systemPalette.windowText
+                                    color: (appStyle ? appStyle.text : "#202020")
                                     anchors.centerIn: parent
                                     width: 22
                                     height: 22
@@ -63,7 +68,7 @@ Rectangle {
                             Rectangle {
                                 Layout.fillWidth: true
                                 height: 1
-                                color: systemPalette.mid
+                                color: (appStyle ? appStyle.divider : "#D2DADA")
                             }
 
                             ListView {
@@ -86,7 +91,7 @@ Rectangle {
                                     Rectangle {
                                         anchors.fill: parent
                                         radius: 7
-                                        color: controller.activeFeedIndex === originalIndex ? systemPalette.highlight : "transparent"
+                                        color: controller.activeFeedIndex === originalIndex ? (appStyle ? appStyle.selectedBackground : "#DCECF8") : "transparent"
                                     }
 
                                     RowLayout {
@@ -107,7 +112,7 @@ Rectangle {
                                                 visible: status === Image.Ready
                                             }
                                             AppIcon {
-                                    color: systemPalette.windowText
+                                    color: (appStyle ? appStyle.text : "#202020")
                                                 anchors.centerIn: parent
                                                 width: 22
                                                 height: 22

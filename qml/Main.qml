@@ -31,12 +31,31 @@ QQC2.ApplicationWindow {
     minimumHeight: 520
     visible: true
     title: "EQ-RSS Reader"
-    color: systemPalette.window
+    color: appStyle.windowBackground
     property int unreadNewArticlesCount: 0
 
     onClosing: function(close) { close.accepted = false; trayController.hideWindow(); }
 
     SystemPalette { id: systemPalette }
+
+    AppStyle {
+        id: appStyle
+        systemWindowColor: systemPalette.window
+        systemWindowTextColor: systemPalette.windowText
+    }
+
+    // One palette for Qt Quick Controls, dialogs and all application panels.
+    palette.window: appStyle.windowBackground
+    palette.windowText: appStyle.text
+    palette.base: appStyle.cardBackground
+    palette.alternateBase: appStyle.panelBackground
+    palette.text: appStyle.text
+    palette.button: appStyle.panelBackground
+    palette.buttonText: appStyle.text
+    palette.highlight: appStyle.selectedBackground
+    palette.highlightedText: appStyle.text
+    palette.mid: appStyle.divider
+    palette.placeholderText: appStyle.mutedText
 
     Item {
         id: app
@@ -63,11 +82,11 @@ QQC2.ApplicationWindow {
 
         // Use explicit high-contrast Reader View colors. Wine/Windows
         // SystemPalette roles can resolve to nearly identical blue tones.
-        property color readerBackgroundColor: "#FFFFFF"
-        property color readerTextColor: "#202124"
-        property color readerLinkColor: "#0067C0"
-        property color readerSubtleColor: "#5F6368"
-        property color readerCodeBackgroundColor: "#F1F3F5"
+        property color readerBackgroundColor: appStyle.readerBackground
+        property color readerTextColor: appStyle.readerText
+        property color readerLinkColor: appStyle.readerLink
+        property color readerSubtleColor: appStyle.readerSubtle
+        property color readerCodeBackgroundColor: appStyle.readerCodeBackground
         property var feeds: []
         property var groups: []
         property var articles: []
@@ -833,14 +852,16 @@ QQC2.ApplicationWindow {
 
             HeaderBar {
                 Layout.fillWidth: true
+                Layout.preferredHeight: 46
                 controller: app
+                appStyle: appStyle
                 onSettingsRequested: settingsDialog.open()
             }
 
             Rectangle {
                 Layout.fillWidth: true
                 height: 1
-                color: systemPalette.mid
+                color: appStyle.divider
             }
 
             RowLayout {
@@ -850,6 +871,7 @@ QQC2.ApplicationWindow {
 
                 FeedSidebar {
                     controller: app
+                    appStyle: appStyle
                 }
 
                 ReaderWorkspace {
@@ -858,6 +880,7 @@ QQC2.ApplicationWindow {
                     Layout.fillHeight: true
                     Layout.minimumWidth: 240
                     controller: app
+                    appStyle: appStyle
                     webProfile: rssProfile
                     wideThreshold: app.wideThreshold
                     readerBackgroundColor: app.readerBackgroundColor
@@ -865,18 +888,20 @@ QQC2.ApplicationWindow {
 
                 ManagementSidebar {
                     controller: app
+                    appStyle: appStyle
                 }
             }
 
             QQC2.Label {
                 Layout.fillWidth: true
                 text: app.statusMessage
-                opacity: 0.65
+                color: appStyle.secondaryText
+                opacity: 1.0
                 elide: Text.ElideRight
                 font.pointSize: 9
             }
         }
 
-    SettingsDialog { id: settingsDialog; settings: appSettings }
+    SettingsDialog { id: settingsDialog; settings: appSettings; appStyle: appStyle }
     }
 }

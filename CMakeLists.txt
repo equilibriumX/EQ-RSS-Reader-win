@@ -50,6 +50,9 @@ set_source_files_properties(
     qml/AppIcon.qml PROPERTIES QT_RESOURCE_ALIAS AppIcon.qml
 )
 set_source_files_properties(
+    qml/AppStyle.qml PROPERTIES QT_RESOURCE_ALIAS AppStyle.qml
+)
+set_source_files_properties(
     qml/SettingsDialog.qml PROPERTIES QT_RESOURCE_ALIAS SettingsDialog.qml
 )
 
@@ -64,6 +67,7 @@ qt_add_qml_module(EQ-RSS-Reader
         qml/FeedSidebar.qml
         qml/ManagementSidebar.qml
         qml/AppIcon.qml
+        qml/AppStyle.qml
         qml/SettingsDialog.qml
 )
 
